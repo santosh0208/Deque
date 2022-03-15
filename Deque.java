@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class Deque<Item> implements Iterable<Item> {
     private Node first,last;
     int n;
@@ -49,7 +51,13 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     // remove and return the item from the front
-    public Item removeFirst()
+    public Item removeFirst(){
+        if(isEmpty()) throw new NoSuchElementException(); 
+        Item item = first.data;
+        first = first.next;
+        n = n-1;
+        return item; 
+    }
 
     // remove and return the item from the back
     public Item removeLast()
